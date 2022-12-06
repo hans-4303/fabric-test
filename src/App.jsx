@@ -7,11 +7,16 @@ import 'fabric-history';
 function App() {
   const [canvas, setCanvas] = useState(null);
 
+  let test = "https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2022-10/dog-583007.jpg?h=c6dbd090&itok=uY9_vnXo";
+  let backImg = new Image();
+  backImg.src = test;
+
   const initCanvas = () => {
     return new fabric.Canvas('canvas', {
       height: 800,
       width: 800,
-      backgroundColor: "whitesmoke"
+      backgroundColor: "whitesmoke",
+      backgroundImage: new fabric.Image(backImg)
     });
   }
 
