@@ -69,6 +69,32 @@ function App() {
     canvas.setActiveObject(rect);
   }
 
+  /* 이미지 업로드 기능이 되는지 테스트 정도
+  주소가 동적이지는 않다. */
+  const upLoad = () => {
+    return new fabric.Image.fromURL('https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg', image => {
+      image.scale(0.75);
+      canvas.add(image);
+      canvas.renderAll();
+    });
+  }
+
+  /* 이미지 업로드가 되도록 작성됨
+  주소와 결과 모두가 동적이다. */
+  const handleImage = (event) => {
+    const reader = new FileReader();
+    const file = event.target.files[0];
+    reader.onload = () => {
+      new fabric.Image.fromURL(reader.result, image => {
+        image.scale(0.75);
+				canvas.add(image);
+				canvas.renderAll();
+      });
+    };
+    reader.readAsDataURL(file);
+  }
+
+  /* 테스트 용 useEffect */
   useEffect(() => {
     if(canvas != null) {
       add();
@@ -77,7 +103,16 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={() => {add()}}></button>
+      <button onClick={() => {add()}}>add</button>
+      <button onClick={() => {upLoad()}}>upload?</button>
+
+      {/* 이전 단계로, 했던 단계로에 해당하는 버튼들 */}
+      <button onClick={() => {canvas.undo()}}>undo</button>
+      <button onClick={() => {canvas.redo()}}>redo</button>
+
+      {/* input type=file accept="image/*" 으로 파일을 받도록 했고
+      onChange 이벤트로 연결하기 */}
+      <input id="filereader" type="file" accept="image/*" onChange={(event) => {handleImage(event)}} />
       <canvas id='canvas'></canvas>
     </div>
   )
