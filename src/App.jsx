@@ -7,7 +7,7 @@ import 'fabric-history';
 function App() {
   const [canvas, setCanvas] = useState(null);
 
-  let test = "https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2022-10/dog-583007.jpg?h=c6dbd090&itok=uY9_vnXo";
+  let test = "https://www.princeton.edu/sites/default/files/styles/scale_1440/public/images/2022/02/KOA_Nassau_2697x1517.jpg?itok=lA8UuoHt";
   let backImg = new Image();
   backImg.src = test;
 
