@@ -115,6 +115,8 @@ function App() {
       <button onClick={() => {canvas.undo()}}>undo</button>
       <button onClick={() => {canvas.redo()}}>redo</button>
 
+      {/* 캔버스 전부를 클리어 해버리는 버튼, 배경을 다 지워버려서 제어 필요 */}
+      <button onClick={() => {canvas.clear()}}>clear</button>
       {/* input type=file accept="image/*" 으로 파일을 받도록 했고
       onChange 이벤트로 연결하기 */}
       <input id="filereader" type="file" accept="image/*" onChange={(event) => {handleImage(event)}} />
